@@ -2,7 +2,7 @@
 
 return [
     '__name' => 'lib-user-main-phone',
-    '__version' => '0.0.1',
+    '__version' => '0.0.2',
     '__git' => 'git@github.com:getmim/lib-user-main-phone.git',
     '__license' => 'MIT',
     '__author' => [
@@ -36,6 +36,24 @@ return [
     ],
     'libForm' => [
         'forms' => [
+            'admin.user.account' => [
+                'phone' => [
+                    'type' => 'tel',
+                    'label' => 'Phone',
+                    'position' => 'top-left',
+                    'rules' => [
+                        'required' => true,
+                        'unique' => [
+                            'model' => 'LibUser\\Library\\Fetcher',
+                            'field' => 'phone',
+                            'self' => [
+                                'service' => 'req.param.id',
+                                'field' => 'id'
+                            ]
+                        ]
+                    ]
+                ]
+            ],
             'admin.me.setting.profile' => [
                 'phone' => [
                     'type' => 'tel',
